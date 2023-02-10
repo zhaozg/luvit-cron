@@ -1,4 +1,4 @@
-local cron = require './cron'
+local cron = require '../cron'
 local utils = require('utils')
 local dump = utils.dump
 local strip = utils.strip
