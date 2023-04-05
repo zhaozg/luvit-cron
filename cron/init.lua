@@ -53,7 +53,12 @@ local function newClock(time, callback, update, ...)
 
   return setmetatable({
     time     = time,
-    callback = callback,
+    callback = function(...)
+      local ret, result = pcall(callback, ...)
+      if not ret then
+        io.stderr:write(string.format("cron callback error: %s\n", result))
+      end
+    end,
     args     = {...},
     running  = 0,
     update   = update
